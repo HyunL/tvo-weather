@@ -2,6 +2,10 @@
 
 This project is for the Software Developer 2 role at TVO. Please see the _Software Developer 2 - Technical Assessment.pdf_ file in the repo.
 
+## Demo
+
+Video: https://www.loom.com/share/4d36000525674dd3aa999d537d8a866e?sid=5c81b728-0928-4174-9e51-e91d097f26d9
+
 ## Running The App
 
 1. `yarn` to install all dependencies for the project
