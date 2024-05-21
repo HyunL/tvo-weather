@@ -12,15 +12,12 @@
   gap: 0 30px;
 }
 
-.display-options {
+.city {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  justify-content: center;
   gap: 0 30px;
-}
-
-.city-select {
-  flex-grow: 1;
 }
 
 .city-name {

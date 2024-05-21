@@ -87,7 +87,16 @@ export default function Homepage() {
 
   return (
     <div className="homepage">
-      <div className="display-options">
+      <div>
+        <CitySelect
+          setCurrentCity={setCurrentCity}
+          error={error}
+          errorMessage={errorMessage}
+        />
+      </div>
+      <div className="city">
+        <h2 className="city-name">{weatherData && weatherData.name}</h2>
+
         <Switch
           onChange={(checked) => {
             setUnit(checked ? units.CELCIUS : units.FAHRENHEIT);
@@ -106,15 +115,7 @@ export default function Homepage() {
           onColor={'#888'}
           offColor={'#888'}
         />
-        <div className="city-select">
-          <CitySelect
-            setCurrentCity={setCurrentCity}
-            error={error}
-            errorMessage={errorMessage}
-          />
-        </div>
       </div>
-      <h2 className="city-name">{weatherData && weatherData.name}</h2>
       <div className="weather-today">
         {weatherData && (
           <div>
