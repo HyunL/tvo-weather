@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Unit } from './Units';
 import CitySelect from './CitySearch';
+import './Homepage.css';
 
 type Props = {
   unit: Unit;
@@ -88,16 +89,33 @@ export default function Homepage(props: Props) {
   }, [currentCity]);
 
   return (
-    <div>
+    <div className="homepage">
       <CitySelect
         setCurrentCity={setCurrentCity}
         error={error}
         errorMessage={errorMessage}
       />
-      <h2>{weatherData && weatherData.name}</h2>
-      <p>
-        {weatherData && weatherData.main.temp} {props.unit.symbol}
-      </p>
+      <h2 className="city-name">{weatherData && weatherData.name}</h2>
+      <div className="weather-today">
+        {weatherData && (
+          <div>
+            {weatherData.weather[0].icon && (
+              <img
+                src={`https://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`}
+              />
+            )}
+            {weatherData.weather[0].description && (
+              <p className="weather-today-description">
+                {weatherData.weather[0].description.charAt(0).toUpperCase() +
+                  weatherData.weather[0].description.slice(1)}
+              </p>
+            )}
+          </div>
+        )}
+        <span>
+          {weatherData && weatherData.main.temp} {props.unit.symbol}
+        </span>
+      </div>
     </div>
   );
 }

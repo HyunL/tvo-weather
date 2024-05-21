@@ -29,6 +29,10 @@ export default function CitySelect(props: Props) {
           control: (baseStyles) => ({
             ...baseStyles,
             borderColor: props.error ? 'red' : 'grey'
+          }),
+          menu: (baseStyles) => ({
+            ...baseStyles,
+            color: 'black'
           })
         }}
       />

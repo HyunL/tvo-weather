@@ -1,0 +1,23 @@
+.homepage {
+  max-width: 800px;
+  margin: auto;
+}
+
+.weather-today {
+  display: flex;
+  font-size: 2em;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0 30px;
+}
+
+.city-name {
+  font-size: 2em;
+}
+
+.weather-today-description {
+  margin: 0;
+  margin-top: -20px;
+  font-size: 0.6em;
+}
