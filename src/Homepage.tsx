@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Unit, units } from './Units';
+import { convertFtoC, convertCtoF, units } from './Units';
 import CitySelect from './CitySearch';
 import Switch from 'react-switch';
 import './Homepage.css';
@@ -10,6 +10,7 @@ export default function Homepage() {
   const [error, setError] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>('');
   const [unit, setUnit] = useState(units.CELCIUS);
+  const [displayTemp, setDisplayTemp] = useState(0);
 
   useEffect(() => {
     // setWeatherData({
@@ -79,11 +80,12 @@ export default function Homepage() {
 
         let weather = await response.json();
         setWeatherData(weather);
+        setDisplayTemp(Math.round(weather.main.temp * 10) / 10);
       } catch (err) {}
     };
 
     fetchDataForPosts();
-  }, [currentCity, unit]);
+  }, [currentCity]);
 
   return (
     <div className="homepage">
@@ -94,12 +96,19 @@ export default function Homepage() {
           errorMessage={errorMessage}
         />
       </div>
+
       <div className="city">
         <h2 className="city-name">{weatherData && weatherData.name}</h2>
 
         <Switch
           onChange={(checked) => {
             setUnit(checked ? units.CELCIUS : units.FAHRENHEIT);
+
+            if (checked) {
+              setDisplayTemp(convertFtoC(displayTemp));
+            } else {
+              setDisplayTemp(convertCtoF(displayTemp));
+            }
           }}
           checked={unit == units.CELCIUS}
           uncheckedIcon={
@@ -116,6 +125,7 @@ export default function Homepage() {
           offColor={'#888'}
         />
       </div>
+
       <div className="weather-today">
         {weatherData && (
           <div>
@@ -133,7 +143,7 @@ export default function Homepage() {
           </div>
         )}
         <span>
-          {weatherData && weatherData.main.temp} {unit.symbol}
+          {weatherData && displayTemp} {unit.symbol}
         </span>
       </div>
     </div>
