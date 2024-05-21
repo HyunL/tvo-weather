@@ -1,18 +1,15 @@
 import { useEffect, useState } from 'react';
-import { Unit } from './Units';
+import { Unit, units } from './Units';
 import CitySelect from './CitySearch';
+import Switch from 'react-switch';
 import './Homepage.css';
 
-type Props = {
-  unit: Unit;
-  setUnit: React.Dispatch<React.SetStateAction<Unit>>;
-};
-
-export default function Homepage(props: Props) {
+export default function Homepage() {
   const [weatherData, setWeatherData] = useState<any>(null);
   const [currentCity, setCurrentCity] = useState<string>('Toronto');
   const [error, setError] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>('');
+  const [unit, setUnit] = useState(units.CELCIUS);
 
   useEffect(() => {
     // setWeatherData({
@@ -67,7 +64,7 @@ export default function Homepage(props: Props) {
         setErrorMessage('');
 
         const response = await fetch(
-          `https://api.openweathermap.org/data/2.5/weather?q=${currentCity}&appid=0890f4af9c4f07e3006d7b44f396cab7&units=${props.unit.name}`
+          `https://api.openweathermap.org/data/2.5/weather?q=${currentCity}&appid=0890f4af9c4f07e3006d7b44f396cab7&units=${unit.name}`
         );
 
         if (response.status === 404) {
@@ -86,15 +83,37 @@ export default function Homepage(props: Props) {
     };
 
     fetchDataForPosts();
-  }, [currentCity]);
+  }, [currentCity, unit]);
 
   return (
     <div className="homepage">
-      <CitySelect
-        setCurrentCity={setCurrentCity}
-        error={error}
-        errorMessage={errorMessage}
-      />
+      <div className="display-options">
+        <Switch
+          onChange={(checked) => {
+            setUnit(checked ? units.CELCIUS : units.FAHRENHEIT);
+          }}
+          checked={unit == units.CELCIUS}
+          uncheckedIcon={
+            <div className="unit-option">
+              <span>°F</span>
+            </div>
+          }
+          checkedIcon={
+            <div className="unit-option">
+              <span>°C</span>
+            </div>
+          }
+          onColor={'#888'}
+          offColor={'#888'}
+        />
+        <div className="city-select">
+          <CitySelect
+            setCurrentCity={setCurrentCity}
+            error={error}
+            errorMessage={errorMessage}
+          />
+        </div>
+      </div>
       <h2 className="city-name">{weatherData && weatherData.name}</h2>
       <div className="weather-today">
         {weatherData && (
@@ -113,7 +132,7 @@ export default function Homepage(props: Props) {
           </div>
         )}
         <span>
-          {weatherData && weatherData.main.temp} {props.unit.symbol}
+          {weatherData && weatherData.main.temp} {unit.symbol}
         </span>
       </div>
     </div>
