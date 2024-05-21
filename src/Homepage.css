@@ -17,7 +17,7 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: 0 30px;
+  gap: 10px 30px;
   margin-top: 3em;
 }
 
@@ -37,4 +37,8 @@
   text-align: center;
   vertical-align: middle;
   line-height: 28px;
+}
+
+.city-select {
+  padding: 0 7px;
 }

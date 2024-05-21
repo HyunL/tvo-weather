@@ -89,7 +89,7 @@ export default function Homepage() {
 
   return (
     <div className="homepage">
-      <div>
+      <div className="city-select">
         <CitySelect
           setCurrentCity={setCurrentCity}
           error={error}
