@@ -19,6 +19,13 @@ This project is for the Software Developer 2 role at TVO. Please see the _Softwa
   - allow for toggling between °C and °F
   - be responsive, being a pleasant viewing experience from very narrow screens to ultrawide
 
+## Files
+
+- `Homepage.tsx` the root component for the homepage. Contains the data fetching logic and renders all the necessary components to render the page
+- `CitySearch.tsx` contains the searchbar component
+- `WeatherDisplay.tsx` contains the component to display the current weather + weather type (e.g. sunny, cloudy, etc.). The idea behind making this a separate component is to allow for us to reuse this. I anticipate it being used when there are multiple cities on a page and/or multiple days of past weather or forecasts.
+- `Units.ts` allows us to have a since source of truth for our data types for temperature units along with utilities (e.g. functions to convert between the units)
+
 ## Potential Improvements
 
 Unfortunately, I didn't get much time to work on this as I was out of town on a trip so please keep that into consideration. This section outlines things I would have loved to add given more time.
