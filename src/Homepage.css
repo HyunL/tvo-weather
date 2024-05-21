@@ -18,10 +18,12 @@
   align-items: center;
   justify-content: center;
   gap: 0 30px;
+  margin-top: 3em;
 }
 
 .city-name {
   font-size: 2em;
+  margin: 0;
 }
 
 .weather-today-description {
