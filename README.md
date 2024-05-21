@@ -30,6 +30,7 @@ This project is for the Software Developer 2 role at TVO. Please see the _Softwa
 
 Unfortunately, I didn't get much time to work on this as I was out of town on a trip so please keep that into consideration. This section outlines things I would have loved to add given more time.
 
+- More details about the day's weather (i.e. high and low for the day, current date)
 - Using the openweather api to get forecast data so that we can use the additional screen real estate to display the 7 day forecast
 - Adding a more robust search bar that doesn't require the exact city name.
   - The user should be able to search something like `Lond` and get suggestions for cities that match such as `London`.
