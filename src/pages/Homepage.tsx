@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
-import { convertFtoC, convertCtoF, units } from './Units';
-import CitySelect from './CitySearch';
+import { convertFtoC, convertCtoF, units } from '../Units';
+import CitySelect from '../components/CitySearch';
 import Switch from 'react-switch';
 import './Homepage.css';
-import WeatherDisplay from './WeatherDisplay';
+import WeatherDisplay from '../components/WeatherDisplay';
 
 export default function Homepage() {
   const [weatherData, setWeatherData] = useState<any>(null);
