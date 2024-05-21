@@ -3,6 +3,7 @@ import { convertFtoC, convertCtoF, units } from './Units';
 import CitySelect from './CitySearch';
 import Switch from 'react-switch';
 import './Homepage.css';
+import WeatherDisplay from './WeatherDisplay';
 
 export default function Homepage() {
   const [weatherData, setWeatherData] = useState<any>(null);
@@ -126,26 +127,14 @@ export default function Homepage() {
         />
       </div>
 
-      <div className="weather-today">
-        {weatherData && (
-          <div>
-            {weatherData.weather[0].icon && (
-              <img
-                src={`https://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`}
-              />
-            )}
-            {weatherData.weather[0].description && (
-              <p className="weather-today-description">
-                {weatherData.weather[0].description.charAt(0).toUpperCase() +
-                  weatherData.weather[0].description.slice(1)}
-              </p>
-            )}
-          </div>
-        )}
-        <span>
-          {weatherData && displayTemp} {unit.symbol}
-        </span>
-      </div>
+      {weatherData && (
+        <WeatherDisplay
+          iconName={weatherData.weather[0].icon}
+          description={weatherData.weather[0].description}
+          temp={displayTemp}
+          unitSymbol={unit.symbol}
+        />
+      )}
     </div>
   );
 }
